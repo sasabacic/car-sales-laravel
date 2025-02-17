@@ -11,4 +11,6 @@ class CarModel extends Model
     protected $table = 'models';
 
     public $timestamps = false;
+
+    protected $fillable = ['maker_id', 'name'];
 }
