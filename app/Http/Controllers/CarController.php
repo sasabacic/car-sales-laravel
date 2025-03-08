@@ -65,6 +65,15 @@ class CarController extends Controller
 
     public function search(){
 
-        return view('car.search');
+        $query = Car::where('published_at','<', now())
+        ->orderBy('published_at','desc');
+
+        /* we want to calculate how many cars exists with the search criterias */
+        $carCount = $query->count();
+
+        /* we want to get the cars */
+
+        $cars = $query->limit(30)->get();
+        return view('car.search',['cars' => $cars, 'carCount' => $carCount]);
     }
 }
