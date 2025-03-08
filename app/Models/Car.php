@@ -7,7 +7,9 @@ use App\Models\User;
 use App\Models\Maker;
 use App\Models\CarType;
 use App\Models\CarImage;
+use App\Models\CarModel;
 use App\Models\FuelType;
+use App\Models\CarFeatures;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -39,9 +41,8 @@ class Car extends Model
 
     public function carType(): BelongsTo{
 
-        return $this->belongsTo(CarType::class);
+        return $this->belongsTo(CarType::class,'car_type_id');
     }
-
     public function fuelType(): BelongsTo
     {
         return $this->belongsTo(FuelType::class);
@@ -54,7 +55,7 @@ class Car extends Model
 
     public function model(): BelongsTo
     {
-        return $this->belongsTo(Model::class);
+        return $this->belongsTo(CarModel::class);
     }
 
     public function owner(): BelongsTo
@@ -69,24 +70,27 @@ class Car extends Model
 
     public function features(): HasOne{
 
-        //based on car_id CarFeatures table connects to the car
+        /* second argument is the field the column name in the database
+        using which the two models relato to each other */
+        /* Based on the car_id car features table connects to the car */
         return $this->hasOne(CarFeatures::class);
     }
 
     public function primaryImage(): HasOne{
 
-        return $this->hasOne(CarImage::class)->oldestOfMany();
-
+        return $this->hasOne(CarImage::class);
     }
 
     public function images(): HasMany{
 
+        /* Among many images of the car Laravel will take the one that has the
+        lowest position and it's gonna return that as primary image of that car */
         return $this->hasMany(CarImage::class);
     }
 
 
 
-    public function favouredUsers(): BelongsToMany{
+     public function favouredUsers(): BelongsToMany{
 
         return $this->belongsToMany(User::class,'favourite_cars','car_id');
     }
