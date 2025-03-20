@@ -1,9 +1,9 @@
-@props(['car','isInWatchlist' => false])
+@props(['car'])
 
 <div class="car-item card">
     <a href="{{route('car.show',$car)}}">
       <img
-        src="{{$car->primaryImage->image_path}}"
+        src="{{$car->imageUrl}}"
         alt=""
         class="car-item-img rounded-t"
       />
@@ -19,10 +19,7 @@
             stroke-width="1.5"
             stroke="currentColor"
             style="width: 16px"
-            @class([
-                //this should be hidden if it is not in the watchlist
-                'hidden' => !$isInWatchlist
-            ])
+
 
           >
             <path
@@ -36,11 +33,6 @@
                       viewBox="0 0 24 24"
                       fill="currentColor"
                       style="width: 16px"
-                      @class([
-                        //this should be hidden if it is in the watchlist
-                'hidden' => $isInWatchlist
-            ])
-
 
                     >
                       <path
