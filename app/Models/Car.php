@@ -10,6 +10,7 @@ use App\Models\CarImage;
 use App\Models\CarModel;
 use App\Models\FuelType;
 use App\Models\CarFeatures;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -93,6 +94,11 @@ class Car extends Model
      public function favouredUsers(): BelongsToMany{
 
         return $this->belongsToMany(User::class,'favourite_cars','car_id');
+    }
+
+    public function getCreateDate(): string{
+
+        return (new Carbon($this->created_at))->format('Y-m-d');
     }
 
 

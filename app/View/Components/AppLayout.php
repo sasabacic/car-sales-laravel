@@ -8,12 +8,17 @@ use Illuminate\View\Component;
 
 class AppLayout extends Component
 {
-    /**
-     * Create a new component instance.
-     */
-    public function __construct()
+    public $title;
+    public $bodyClass;
+
+
+    public function __construct($title = '', $bodyClass = null)
     {
-        //
+        //public property of the of the AppLayout class
+        //we are assigning the value of the parameter $title to the property
+        $this->title = $title;
+        $this->bodyClass = $bodyClass;
+
     }
 
     /**

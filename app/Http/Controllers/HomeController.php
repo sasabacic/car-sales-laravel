@@ -20,6 +20,7 @@ class HomeController extends Controller
     public function index(){
 
           $cars = Car::where('published_at','<',now())
+          ->with(['primaryImage','city','maker','carType','fuelType','model'])
           ->orderBy('published_at','desc')
           ->limit(30)
           ->get();
