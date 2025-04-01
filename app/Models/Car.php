@@ -96,10 +96,7 @@ class Car extends Model
         return $this->belongsToMany(User::class,'favourite_cars','car_id');
     }
 
-    public function getCreateDate(): string{
-
-        return (new Carbon($this->created_at))->format('Y-m-d');
-    }
+    
 
 
 }

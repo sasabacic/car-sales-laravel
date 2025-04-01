@@ -1,4 +1,4 @@
-@props(['car'])
+@props(['car','isInWatchlist' => false])
 
 <div class="car-item card">
     <a href="{{route('car.show',$car)}}">
@@ -19,6 +19,9 @@
             stroke-width="1.5"
             stroke="currentColor"
             style="width: 16px"
+            @class([
+                'hidden' => $isInWatchlist
+            ])
 
 
           >
@@ -33,6 +36,9 @@
                       viewBox="0 0 24 24"
                       fill="currentColor"
                       style="width: 16px"
+                      @class([
+                        'hidden' => !$isInWatchlist
+                      ])
 
                     >
                       <path
