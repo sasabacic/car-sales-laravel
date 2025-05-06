@@ -11,9 +11,10 @@ class GuestLayout extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct($footerLink = '', $title='')
     {
-        //
+        $this->footerLink = $footerLink;
+        $this->title = $title;
     }
 
     /**

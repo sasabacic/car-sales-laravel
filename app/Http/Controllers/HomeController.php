@@ -27,14 +27,14 @@ class HomeController extends Controller
         ->limit(30)
         ->get();
 
-        // Instantiate Faker and add the custom provider
+        // Instantiate Faker and creates an faker instance and add the custom provider
         $faker = FakerFactory::create();
         $faker->addProvider(new PicsumImageProvider($faker));
 
         // Add a random image URL to each car
-        $cars = $cars->map(function ($car) use ($faker) {
-            $car->imageUrl = $faker->imageUrl(300, 200); // Adjust size as needed
-            return $car;
+        $cars->map(function($car) use ($faker){
+        $car->imageUrl = $faker->imageUrl(300,200);
+        return $car;
         });
 
         //we are passing the cars threw associative array
