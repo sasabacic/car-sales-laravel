@@ -1,6 +1,6 @@
 @props(['title' => '', 'bodyClass' => ''])
 
-<x-base-layout :title="$title" bodyClass="$bodyClass">
+<x-guest-layout :title="$title" bodyClass="$bodyClass">
 
         <main>
             <div class="container-small page-login">
@@ -27,5 +27,5 @@
               </div>
             </div>
           </main>
-</x-base-layout>
+</x-guest-layout>
 
