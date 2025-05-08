@@ -8,12 +8,12 @@ use Illuminate\View\Component;
 
 class GuestLayout extends Component
 {
-    /**
-     * Create a new component instance.
-     */
-    public function __construct()
+    public $title;
+    public $bodyClass;
+    public function __construct($title = '', $bodyClass = '')
     {
-        //
+        $this->title = $title;
+        $this->bodyClass = $bodyClass;
     }
 
     /**
